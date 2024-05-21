@@ -1,13 +1,18 @@
 const convertButton = document.querySelector(".meu-botao")
 
-function convertValues() {
+ const convertValues = async () => {
  const inputValue = document.querySelector(".money").value
  const  valoraConverter = document.querySelector(".valor-convert")
  const   valorConverted = document.querySelector(".valor")
 
- const bitcoinToday= 260.200
+ 
 
- const convertValue = inputValue / bitcoinToday
+ 
+
+   const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL").then(resposta => resposta.json())
+   const bitcoinToday = data.BTCBRL.high
+   const convertValue = inputValue / bitcoinToday
+
 
  valoraConverter.innerHTML =  new Intl.NumberFormat("pt-br", {
     style: "currency",
